@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Face Mask Order</title>
+    <meta charset="UTF-8">
+    <style>
+        form {
+          margin: 20px;
+        }
+        .field {
+          margin: 10px 0;
+        }
+      </style>
+</head>
+<body style="text-align:center;" id="body">
+
+<h1 style="color:green;">Add Face Mask Order</h1>
+
+<p></p>
+
+<img src="minions-with-face-mask.jpg" alt="minions face mask" style="width:200px;height:200px;">
+
+<p>
+    <p><input type="text" id="firstName" placeholder="First Name"></p>
+    <p><input type="text" id="lastName" placeholder="Last Name"></p>
+    <p><input type="text" id="emailId" placeholder="Email"></p>
+    <p><input type="number" id="boxNumber" placeholder="Number of Box"></p>
+    <p><button onclick="sendJSON()">Submit</button>
+</p>
+
+<p class="result" style="color:green"></p>
+
+<script src="index.js"></script> 
+
+</body>
+</html>
