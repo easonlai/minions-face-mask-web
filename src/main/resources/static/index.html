@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Face Mask Order</title>
+    <meta charset="utf-8">
+    <style>
+        form {
+          margin: 20px;
+        }
+        .field {
+          margin: 10px 0;
+        }
+    </style>
+</head>
+<body style="text-align:center;">
+
+<h1 style="color:green;">Add Face Mask Order</h1>
+
+<p></p>
+
+<img src="minions-with-face-mask.jpg" alt="minions face mask" style="width:200px;height:200px;">
+
+<p></p>
+
+<form id="my-form">
+    <p><input type="text" id="firstName" name="firstName" placeholder="First Name" /></p>
+    <p><input type="text" id="lastName" name="lastName" placeholder="Last Name" /></p>
+    <p><input type="text" id="emailId" name="emailId" placeholder="Email" /></p>
+    <p><input type="number" id="boxNumber" name="boxNumber" placeholder="Number of Box" /></p>
+    <button type="submit">Submit</button>
+</form>
+
+<p></p>
+
+<div id="response">
+    <pre></pre>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" crossorigin="anonymous"></script>
+<script>
+    (function($){
+        function processForm( e ){
+            $.ajax({
+                url: '/api/v1/orders',
+                dataType: 'json',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify( { "firstName": $('#firstName').val(), "lastName": $('#lastName').val(), "emailId": $('#emailId').val(), "boxNumber": $('#boxNumber').val() } ),
+                processData: false,
+                success: function( data, textStatus, jQxhr ){
+                  $('#response pre').html( JSON.stringify( data ) );
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                  console.log( errorThrown );
+                  $('#response pre').html("ERROR, YOU ORDERED BEFORE!");
+                }
+            });
+            e.preventDefault();
+        }
+        $('#my-form').submit( processForm );
+    })(jQuery);
+</script>
+</body>
+</html>
